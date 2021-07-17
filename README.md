@@ -1,7 +1,7 @@
 # PHP client for Laravel Saga Server
 
 Install package:
-`composer require alignwebs/saga-server-client-php`
+`composer require alignwebs/saga-server-client-php:dev-main`
 
 
 Sample Code:
