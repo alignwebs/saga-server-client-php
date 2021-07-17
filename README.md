@@ -6,7 +6,8 @@ Install package:
 
 Sample Code:
 
-`<?php
+```
+<?php
 
 include 'vendor/autoload.php';
 
@@ -42,4 +43,4 @@ try {
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage() . "\n";
 }
-`
+```
