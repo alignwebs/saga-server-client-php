@@ -1,0 +1,40 @@
+{
+    "name": "alignwebs/saga-server-client-php",
+    "description": "PHP client for Laravel Saga Server",
+    "keywords": [
+        "alignwebs",
+        "saga-server-client-php"
+    ],
+    "homepage": "https://github.com/alignwebs/saga-server-client-php",
+    "license": "MIT",
+    "type": "library",
+    "authors": [{
+        "name": "Gulzar Ahmed",
+        "email": "alignwebs@gmail.com",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alignwebs\\SagaClient\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alignwebs\\SagaClient\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
