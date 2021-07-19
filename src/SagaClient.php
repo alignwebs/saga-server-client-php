@@ -30,13 +30,15 @@ class SagaClient
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
 
         $response = curl_exec($ch);
-        curl_close($ch);
 
         // handle error
         if ($response === false) {
             $error = curl_error($ch);
+            curl_close($ch);
             throw new \Exception("Curl error: $error");
         }
+
+        curl_close($ch);
 
         $response = json_decode($response, true);
 
