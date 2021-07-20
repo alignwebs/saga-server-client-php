@@ -3,7 +3,6 @@
 Install package:
 `composer require alignwebs/saga-server-client-php:dev-main`
 
-
 Sample Code:
 
 ```
@@ -21,6 +20,14 @@ $sagaClient = new SagaClient($host);
 
 $sagaName = "TestSaga";
 $sagaBuilder = new SagaBuilder($sagaName, 11);
+
+// Add Failed Callbacks
+$failed = [
+    "url" => "http://saga.hyperzod.test/testing/0/delete",
+    "method" => "POST",
+    "payload" => ['id' => 111]
+];
+$sagaBuilder->addSagaFailedCallback($failed['url'], $failed['method'], $failed['payload']);
 
 // SETTING SERVICE
 $sagaObject = new SagaObject("setting");
