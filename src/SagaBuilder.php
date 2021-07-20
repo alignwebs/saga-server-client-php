@@ -8,6 +8,7 @@ class SagaBuilder
 {
     var $sagaUid;
     var $sagaName;
+    var $sagaFailedCallbacks = [];
     var $sagas = [];
 
     function __construct(string $sagaName, string $sagaUid = null)
@@ -32,11 +33,21 @@ class SagaBuilder
         return $this->sagas;
     }
 
+    public function addSagaFailedCallback($url, $method, array $payload = [])
+    {
+        $this->sagaFailedCallbacks[] = [
+            'url' => $url,
+            'method' => $method,
+            'payload' => $payload,
+        ];
+    }
+
     // get saga method
     public function getSaga(): array
     {
         $saga['sagaUid'] = $this->sagaUid;
         $saga['sagaName'] = $this->sagaName;
+        $saga['sagaFailedCallbacks'] = $this->sagaFailedCallbacks;
         $saga['sagas'] = $this->getSagas();
         return $saga;
     }
