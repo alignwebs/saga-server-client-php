@@ -10,7 +10,7 @@ class SagaBuilder
     var $sagaName;
     var $sagaFailedCallbacks = [];
     var $sagas = [];
-    var $sagaCompletedEventPayload;
+    var $sagaCompletedEventPayload = null;
 
     function __construct(string $sagaName, string $sagaUid = null)
     {
@@ -54,6 +54,7 @@ class SagaBuilder
         $saga['sagaUid'] = $this->sagaUid;
         $saga['sagaName'] = $this->sagaName;
         $saga['sagaFailedCallbacks'] = $this->sagaFailedCallbacks;
+        $saga['sagaCompletedEventPayload'] = $this->sagaCompletedEventPayload;
         $saga['sagas'] = $this->getSagas();
         return $saga;
     }
