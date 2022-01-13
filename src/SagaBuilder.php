@@ -10,6 +10,7 @@ class SagaBuilder
     var $sagaName;
     var $sagaFailedCallbacks = [];
     var $sagas = [];
+    var $sagaCompletedEventPayload;
 
     function __construct(string $sagaName, string $sagaUid = null)
     {
@@ -40,6 +41,11 @@ class SagaBuilder
             'method' => $method,
             'payload' => $payload,
         ];
+    }
+
+    public function addSagaCompletedEventPayload(array $payload)
+    {
+        $this->sagaCompletedEventPayload = $payload;
     }
 
     // get saga method
