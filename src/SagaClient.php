@@ -43,6 +43,9 @@ class SagaClient
         $response = json_decode($response, true);
 
         if (!isset($response['success']) || $response['success'] == false) {
+            if (isset($response['data']) && is_array($response['data'])) {
+                throw new \Exception("Error creating saga: " . $response['message'] . " : " . implode(", ", $response['data']));
+            }
             throw new \Exception("Error creating saga: " . $response['message']);
         }
 
