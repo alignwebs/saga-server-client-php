@@ -6,20 +6,20 @@ use Alignwebs\SagaClient\SagaObject;
 
 class SagaBuilder
 {
-    var $sagaUid;
-    var $sagaName;
-    var $sagaFailedCallbacks = [];
-    var $sagas = [];
-    var $sagaCompletedEventPayload = null;
+    public ?string $sagaUid;
+    public string $sagaName;
+    public array $sagaFailedCallbacks = [];
+    public array $sagas = [];
+    public ?array $sagaCompletedEventPayload = null;
 
-    function __construct(string $sagaName, string $sagaUid = null)
+    public function __construct(string $sagaName, ?string $sagaUid = null)
     {
         $this->sagaName = $sagaName;
         $this->sagaUid = $sagaUid;
     }
 
     // create saga method 
-    public function addSagaEntry(SagaObject $sagaObject)
+    public function addSagaEntry(SagaObject $sagaObject): void
     {
         $object = $sagaObject->getSagaObject();
         $key = array_keys($object)[0];
@@ -29,12 +29,12 @@ class SagaBuilder
     }
 
     // get sagas method
-    public function getSagas()
+    public function getSagas(): array
     {
         return $this->sagas;
     }
 
-    public function addSagaFailedCallback($url, $method, array $payload = [])
+    public function addSagaFailedCallback(string $url, string $method, array $payload = []): void
     {
         $this->sagaFailedCallbacks[] = [
             'url' => $url,
@@ -43,7 +43,7 @@ class SagaBuilder
         ];
     }
 
-    public function addSagaCompletedEventPayload(array $payload)
+    public function addSagaCompletedEventPayload(array $payload): void
     {
         $this->sagaCompletedEventPayload = $payload;
     }

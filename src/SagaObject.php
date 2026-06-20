@@ -4,17 +4,17 @@ namespace Alignwebs\SagaClient;
 
 class SagaObject
 {
-    var $serviceName;
-    var $successCase;
-    var $failureCase;
-    var $payload;
+    public string $serviceName;
+    public ?array $successCase = null;
+    public ?array $failureCase = null;
+    public ?array $payload = null;
 
-    function __construct(string $serviceName)
+    public function __construct(string $serviceName)
     {
         $this->serviceName = $serviceName;
     }
 
-    public function getSagaObject()
+    public function getSagaObject(): array
     {
         return [
             $this->serviceName => [
@@ -25,7 +25,7 @@ class SagaObject
         ];
     }
 
-    public function successCase(string $url, string $method = "GET", string $expects = null)
+    public function successCase(string $url, string $method = "GET", ?string $expects = null): void
     {
         // validate $url
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
@@ -44,7 +44,7 @@ class SagaObject
     }
 
     // create failure case method with url and method
-    public function failureCase(string $url, string $method = "GET")
+    public function failureCase(string $url, string $method = "GET"): void
     {
         // validate $url
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
@@ -62,13 +62,13 @@ class SagaObject
     }
 
     // set payload
-    public function payload(array $payload)
+    public function payload(array $payload): void
     {
         $this->payload = $payload;
     }
 
     // list valid http methods available
-    public function validHttpMethods()
+    public function validHttpMethods(): array
     {
         return ["GET", "POST", "PUT", "PATCH", "DELETE"];
     }

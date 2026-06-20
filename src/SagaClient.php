@@ -7,14 +7,14 @@ use Alignwebs\SagaClient\SagaBuilder;
 class SagaClient
 {
     // The URL of the Saga server.
-    private $sagaServerHost;
+    private string $sagaServerHost;
 
-    function __construct($sagaServerHost)
+    public function __construct(string $sagaServerHost)
     {
         $this->sagaServerHost = $sagaServerHost;
     }
 
-    public function createSaga(SagaBuilder $sagaBuilder)
+    public function createSaga(SagaBuilder $sagaBuilder): string
     {
         // Connect to the Saga server using curl and handle curl error.
         $ch = curl_init();
@@ -27,7 +27,7 @@ class SagaClient
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($sagaBuilder->getSaga()));
         // curl accept json
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Accept: application/json']);
 
         $response = curl_exec($ch);
 
